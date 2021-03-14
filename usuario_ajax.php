@@ -8,7 +8,7 @@ if (($_GET['acao']) == "inserir_single") {
     $nome = trim($_GET['nome']);
     $idade = trim($_GET['idade']);
 
-    $query = "INSERT INTO Usuario(`nome`,`data`,`idade`,`multiplayer`) VALUES ('$nome', '$agora', '$idade', '0')";
+    $query = "INSERT INTO Usuario(nome,data,idade,multiplayer) VALUES ('$nome', '$agora', '$idade', '0')";
     $result = pg_query($db_handle,$query);
     echo $result;
 }
