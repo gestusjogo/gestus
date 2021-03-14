@@ -12,10 +12,9 @@ if (($_GET['acao']) == "inserir_single") {
     $result = pg_query($db_handle,$query);
     
     if ($result == false) {    
-        die( pg_last_error() );
+        echo pg_last_error();
     } else {
-        $lastId = pg_last_oid($result);
-        echo $lastId;
+        echo pg_last_oid($result);
     }
 }
 ?>
