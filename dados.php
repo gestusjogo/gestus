@@ -45,6 +45,7 @@ if ($db_handle) {
 		</tr>
 		<?php
 		}
+	}
 } else {
 
 	echo 'Connection attempt failed.';
