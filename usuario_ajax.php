@@ -8,13 +8,15 @@ if (($_GET['acao']) == "inserir_single") {
     $nome = trim($_GET['nome']);
     $idade = trim($_GET['idade']);
 
-    $query = "INSERT INTO Usuario(nome,data,idade,multiplayer) VALUES ('$nome', '$agora', '$idade', '0')";
+    $query = "INSERT INTO Usuario(nome,data,idade,multiplayer) VALUES ('$nome', '$agora', '$idade', '0') RETURNING id";
     $result = pg_query($db_handle,$query);
     echo 'Deu bom?';
-    if ($result == false) {    
+    if ($result == false) {   
+        echo 'nao';
         echo pg_last_error();
     } else {
-        echo pg_last_oid($result);
+        echo 'sim';
+        echo pg_fetch_array($result,0)[0];;
     }
 }
 ?>
