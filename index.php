@@ -1,9 +1,17 @@
 <?php 
-// abre o arquivo colocando o ponteiro de escrita no final
-$arquivo = fopen('meuarquivo.txt','r+');
-if ($arquivo) {
-	if (!fwrite($arquivo, 'Novo conteúdo')) die('Não foi possível atualizar o arquivo.');
-	echo 'Arquivo atualizado com sucesso';
-	fclose($arquivo);
+echo "Hello World";
+
+$db_handle = pg_connect("host=ec2-54-164-22-242.compute-1.amazonaws.com dbname=dc5ssns9cdsk52 user=pzwruillafjvix password=f4b462b358e278660c11bfd243ead82ad574b2ad7fec4244a2ea52e8bfde059c");
+
+if ($db_handle) {
+
+echo 'Connection attempt succeeded.';
+
+} else {
+
+echo 'Connection attempt failed.';
+
 }
+
+pg_close($db_handle);
 ?>
