@@ -1,0 +1,218 @@
+.erros{
+	/*border: none;*/
+  cursor: url(../assets/images/cursor.png), auto;
+}
+
+#erro0{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 50px;
+  left: 870px;
+  padding: 10px 20px;
+}
+
+#erro1{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 205px;
+  left: 800px;
+  padding: 25px 30px;
+}
+
+#erro2{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 195px;
+  left: 680px;
+  padding: 30px 30px;
+}
+
+#erro3{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 90px;
+  left: 705px;
+  padding: 4px 10px;	
+}
+
+#erro4{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 95px;
+  left: 595px;
+  padding: 10px 15px;
+}
+
+#erro5{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 150px;
+  left: 470px;
+  padding: 10px 20px;
+}
+
+#erro6{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 30px;
+  left: 470px;
+  padding: 10px 15px;
+}
+
+#erro7{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 170px;
+  left: 350px;
+  padding: 10px 20px;
+}
+
+#erro8{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 130px;
+  left: 110px;
+  padding: 20px 20px;
+}
+
+#erro9{
+	border-style: none;
+  background-color: transparent;
+  position: absolute;
+  top: 140px;
+  left: 30px;
+  padding: 10px 20px;
+}
+
+#x0{
+  position: absolute;
+  right: 135px; 
+  top: 340px;   
+}
+#x1{
+  position: absolute;
+  right: 185px; 
+  top: 490px;   
+}
+
+#x2{
+  position: absolute;
+  right: 290px; 
+  top: 490px;    
+}
+
+#x3{
+  position: absolute;
+  right: 290px; 
+  top: 360px;      
+}
+
+#x4{
+  position: absolute;
+  right: 380px; 
+  top: 380px;   
+}
+
+#x5{
+  position: absolute;
+  right: 490px; 
+  top: 430px;     
+}
+
+#x6{
+  position: absolute;
+  right: 500px; 
+  top: 330px;     
+}
+
+#x7{
+  position: absolute;
+  right: 600px; 
+  top: 450px;     
+}
+
+#x8{
+  position: absolute;
+  left: 155px; 
+  top: 420px;      
+}
+
+#x9{
+  position: absolute;
+  left: 83px; 
+  top: 420px;  
+}
+
+/* Modal Content */
+.modal-erros {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 1000px;
+  height: 562px;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-erros-content {
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 100px;
+  border: 1px solid #888;
+  border-radius: 50%;
+  width: 330px;
+  height: 330px;
+}
+
+.text-modal-erros{
+  margin-top: 30px;
+  font-size: 85px;
+  color: #8B8B8B;
+  font-family: 'AristaPro-Fat', sans-serif;
+}
+
+.modal-erros img{
+  margin-left: 25%;
+  margin-top: 60px;
+  margin-bottom: 0px;
+  width: 150px;
+  height: 150px;
+}
+
+#close_numero {
+  background-image: url("../assets/images/nao.png");
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-color: #ff7dae;
+  border: none;
+  position: absolute;
+  left: 570px;
+  top: 100px;
+  padding: 32px 40px;
+  display: inline-block;
+  font-size: 16px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: url(../assets/images/hover.png), auto;
+  border-radius: 50%;
+}
+
+#close_numero:hover{
+  background-color: #ff4d91;
+}

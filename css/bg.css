@@ -1,0 +1,83 @@
+.bg_fundo{
+  background-color: white;
+  background-image: url("../assets/images/fundo.png");
+}
+
+.bg_ajuda{
+  background-color: white;
+  background-image: url("../assets/images/bg_ajuda.png");
+}
+
+.bg_infor{
+  background-color: white;
+  background-image: url("../assets/images/bg_infor.png");
+}
+
+.bg_inicio{
+  background-image: url("../assets/images/bg_menu.png");
+}
+
+.bg_j1{
+  background-color: white;
+  background-image: url("../assets/images/fundo.png");
+}
+
+.bg_j2{
+  background-color: white;
+  background-image: url("../assets/images/fundo.png");
+}
+
+.bg_tela1{
+  background-image: url("../assets/images/sala.jpg");
+}
+
+.bg_menu{
+  background-image: url("../assets/images/mapa.png");
+}
+
+.bg_escola{
+  background-image: url("../assets/images/bg_escola.jpg");   
+}
+
+.bg_supermercado1{
+  background-image: url("../assets/images/supermercado01.png");   
+}
+
+.bg_casa{
+  background-image: url("../assets/images/bg_casa.jpg"); 
+}
+
+.bg_sorveteria{
+  background-image: url("../assets/images/bg_sorveteria.jpg"); 
+}
+
+.bg_fliperama{
+  background: url("../assets/images/bg_fliperama.jpg"); 
+}
+
+.bg_fliperama2{
+  background: url("../assets/images/bg_fliperama2.jpg"); 
+}
+
+.bg_praca{
+  background: url("../assets/images/bg_praca.jpg");  
+}
+
+.bg_praca_fundo{
+  background: url("../assets/images/bg_praça_fundo.png");  
+}
+
+.bg_blur{
+  background: url("../assets/images/mapa_blur.png");  
+}
+
+.bg_parque{
+  background: url("../assets/images/bg_ambiental.png")
+}
+.bg_parque2{
+  background: url("../assets/images/bg_ambiental2.png")
+}
+
+.bg_parque_blur{
+  background: url("../assets/images/bg_ambiental_blur.png")
+}
