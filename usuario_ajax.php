@@ -10,12 +10,25 @@ if (($_GET['acao']) == "inserir_single") {
 
     $query = "INSERT INTO Usuario(nome,data,idade,multiplayer) VALUES ('$nome', '$agora', '$idade', '0') RETURNING id";
     $result = pg_query($db_handle,$query);
-    echo 'Deu bom?';
-    if ($result == false) {   
-        echo 'nao';
-        echo pg_last_error();
-    } else {
-        echo 'sim';
+    if ($result != false) { 
+        echo pg_fetch_array($result,0)[0];
+    }
+}else if (($_GET['acao']) == "inserir_multi") {
+    $nome = trim($_POST['nome']);
+    $idade = trim($_POST['idade']);
+    $nome2 = trim($_POST['nome2']);
+    $idade2 = trim($_POST['idade2']);
+
+    $query = "INSERT INTO Usuario(`nome`,`data`,`idade`,`multiplayer`) VALUES ('$nome', '$agora', '$idade', '1') RETURNING id";
+    $result = pg_query($db_handle,$query);
+    if ($result != false) { 
+        echo pg_fetch_array($result,0)[0];
+    }
+
+    $query = "INSERT INTO Usuario(`nome`,`data`,`idade`,`multiplayer`) VALUES ('$nome2', '$agora', '$idade2', '1') RETURNING id";
+    echo ',';
+    $result = pg_query($db_handle,$query);
+    if ($result != false) { 
         echo pg_fetch_array($result,0)[0];
     }
 }
