@@ -1,15 +1,10 @@
 <?php
-DEFINE('DB_USER', 'id15247847_admin');
-DEFINE('DB_PASSWORD', '3J{NV22Ce~4w!9l5');
-DEFINE('DB_HOST', 'localhost');
-DEFINE('DB_NAME', 'id15247847_gestus');
-/* Attempt to connect to MySQL database */
-$con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
- 
-// Check connection
-if ($con === false) {
-    die("ERRO: Não é possível conectar. " . mysqli_connect_error());
-}else{
-    echo 'Teste';
+$db_handle = pg_connect("host=ec2-54-164-22-242.compute-1.amazonaws.com dbname=dc5ssns9cdsk52 user=pzwruillafjvix password=f4b462b358e278660c11bfd243ead82ad574b2ad7fec4244a2ea52e8bfde059c");
+
+
+if ($db_handle) {
+echo 'Connection attempt succeeded.';
+} else {
+echo 'Connection attempt failed.';
 }
 ?>

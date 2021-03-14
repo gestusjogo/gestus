@@ -16,35 +16,48 @@
 	<th>Completou Escola</th>
 </thead>
 <?php
-$mysqli = new mysqli("localhost","id15247847_admin","3J{NV22Ce~4w!9l5","id15247847_gestus");
+<?php 
+echo "Hello World";
 
-$sql = "SELECT * FROM Fases_concluidas INNER JOIN Usuario on Usuario.Id = Fases_concluidas.idUsuario";
+$db_handle = pg_connect("host=ec2-54-164-22-242.compute-1.amazonaws.com dbname=dc5ssns9cdsk52 user=pzwruillafjvix password=f4b462b358e278660c11bfd243ead82ad574b2ad7fec4244a2ea52e8bfde059c");
 
-    if ($result = $mysqli->query($sql)) {
-        while($obj = $result->fetch_object()){
-?>
+
+if ($db_handle) {
+	$query = "SELECT * FROM Fases_concluidas INNER JOIN Usuario on Usuario.Id = Fases_concluidas.idUsuario";
+
+	$result = pg_exec($db_handle, $query);
+
+	if ($result) {
+
+		for ($row = 0; $row < pg_numrows($result); $row++) {
+			?>
             <tr>
-		<td><?=$obj->Nome?></td>
-		<td><?=$obj->Idade?></td>
-		<td><?=$obj->Data?></td>
-		<td><input type="checkbox" <?=($obj->Multiplayer == 1) ? "checked" : ""?>/></td>
-		<td><input type="checkbox" <?=($obj->Inicio == 1) ? "checked" : ""?>/></td>
-		<td><input type="checkbox" <?=($obj->Supermercado == 1) ? "checked" : ""?>/></td>
-		<td><input type="checkbox" <?=($obj->Fliperama == 1) ? "checked" : ""?>/></td>
-		<td><input type="checkbox" <?=($obj->Sorveteria == 1) ? "checked" : ""?>/></td>
-		<td><input type="checkbox" <?=($obj->Praca == 1) ? "checked" : ""?>/></td>
-		<td><input type="checkbox" <?=($obj->Ambiental == 1) ? "checked" : ""?>/></td>
-		<td><input type="checkbox" <?=($obj->Escola == 1) ? "checked" : ""?>/></td>
+		<td><?=pg_result($result, $row, 'Nome')?></td>
+		<td><?=pg_result($result, $row, 'Idade')?></td>
+		<td><?=pg_result($result, $row, 'Data')?></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Multiplayer') == 1) ? "checked" : ""?>/></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Inicio') == 1) ? "checked" : ""?>/></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Mercado') == 1) ? "checked" : ""?>/></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Fliperama') == 1) ? "checked" : ""?>/></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Sorveteria') == 1) ? "checked" : ""?>/></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Praca') == 1) ? "checked" : ""?>/></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Ambiental') == 1) ? "checked" : ""?>/></td>
+		<td><input type="checkbox" <?=(pg_result($result, $row, 'Escola') == 1) ? "checked" : ""?>/></td>
 	    </tr>
 <?php
         }
-    }
+?>
+} else {
+
+	echo 'Connection attempt failed.';
+
+}
 ?>
 </tbody>
-Quantidade de acessos: <?=$result->num_rows?>
+Quantidade de acessos: <?=pg_num_rows($result)?>
 </table>
 </body>
 <?php
-    $result->close();
+	pg_close($db_handle);
 ?>
 </html>
