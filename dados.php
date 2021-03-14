@@ -25,7 +25,25 @@ if ($db_handle) {
 	$query = "SELECT * FROM Fases_concluidas INNER JOIN Usuario on Usuario.Id = Fases_concluidas.idUsuario";
 
 	$result = pg_exec($db_handle, $query);
+	
+	if ($result) {
 
+		for ($row = 0; $row < pg_numrows($result); $row++) {
+			?>
+		<tr>
+			<td><?=pg_result($result, $row, 'Nome')?></td>
+			<td><?=pg_result($result, $row, 'Idade')?></td>
+			<td><?=pg_result($result, $row, 'Data')?></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Multiplayer') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Inicio') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Mercado') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Fliperama') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Sorveteria') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Praca') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Ambiental') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Escola') == 1) ? "checked" : ""?>/></td>
+		</tr>
+		<?php
 } else {
 
 	echo 'Connection attempt failed.';
