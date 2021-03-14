@@ -16,7 +16,7 @@ if (($_GET['acao']) == "inserir_single") {
         echo pg_last_error();
     } else {
         echo 'sim';
-        echo pg_fetch_array($result,0)[0];;
+        echo pg_fetch_array($result,0)[0];
     }
 }
 ?>
