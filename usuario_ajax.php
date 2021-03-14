@@ -19,13 +19,13 @@ if (($_GET['acao']) == "inserir_single") {
     $nome2 = trim($_GET['nome2']);
     $idade2 = trim($_GET['idade2']);
 
-    $query = "INSERT INTO Usuario(`nome`,`data`,`idade`,`multiplayer`) VALUES ('$nome', '$agora', '$idade', '1') RETURNING id";
+    $query = "INSERT INTO Usuario(nome,data,idade,multiplayer) VALUES ('$nome', '$agora', '$idade', '1') RETURNING id";
     $result = pg_query($db_handle,$query);
     if ($result != false) { 
         echo pg_fetch_array($result,0)[0];
     }
 
-    $query = "INSERT INTO Usuario(`nome`,`data`,`idade`,`multiplayer`) VALUES ('$nome2', '$agora', '$idade2', '1') RETURNING id";
+    $query = "INSERT INTO Usuario(nome,data,idade,multiplayer) VALUES ('$nome2', '$agora', '$idade2', '1') RETURNING id";
     echo ',';
     $result = pg_query($db_handle,$query);
     if ($result != false) { 
