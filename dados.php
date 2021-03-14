@@ -15,7 +15,6 @@
 	<th>Completou Ambiental</th>
 	<th>Completou Escola</th>
 </thead>
-<?php
 <?php 
 echo "Hello World";
 
