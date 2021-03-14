@@ -16,8 +16,6 @@
 	<th>Completou Escola</th>
 </thead>
 <?php 
-echo "Hello World";
-
 $db_handle = pg_connect("host=ec2-54-164-22-242.compute-1.amazonaws.com dbname=dc5ssns9cdsk52 user=pzwruillafjvix password=f4b462b358e278660c11bfd243ead82ad574b2ad7fec4244a2ea52e8bfde059c");
 
 
@@ -34,14 +32,14 @@ if ($db_handle) {
 			<td><?=pg_result($result, $row, 'Nome')?></td>
 			<td><?=pg_result($result, $row, 'Idade')?></td>
 			<td><?=pg_result($result, $row, 'Data')?></td>
-			<td><input type="checkbox" /></td>
-			<td><input type="checkbox" /></td>
-			<td><input type="checkbox" /></td>
-			<td><input type="checkbox" /></td>
-			<td><input type="checkbox" /></td>
-			<td><input type="checkbox" /></td>
-			<td><input type="checkbox" /></td>
-			<td><input type="checkbox" /></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Multiplayer') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Inicio') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Mercado') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Fliperama') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Sorveteria') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Praca') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Ambiental') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Escola') == 1) ? "checked" : ""?>/></td>
 		</tr>
 		<?php
 		}
