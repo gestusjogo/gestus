@@ -29,6 +29,7 @@ if ($db_handle) {
 		for ($row = 0; $row < pg_num_rows($result); $row++) {
 			?>
 		<tr>
+		<?=pg_result($result, $row, 'Multiplayer')?>
 			<td><?=pg_result($result, $row, 'Nome')?></td>
 			<td><?=pg_result($result, $row, 'Idade')?></td>
 			<td><?=pg_result($result, $row, 'Data')?></td>
