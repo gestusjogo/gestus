@@ -33,14 +33,14 @@ if ($db_handle) {
 			<td><?=pg_result($result, $row, 'Nome')?></td>
 			<td><?=pg_result($result, $row, 'Idade')?></td>
 			<td><?=pg_result($result, $row, 'Data')?></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Multiplayer') == 1) ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Inicio') == 1) ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Mercado') == 1) ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Fliperama') == 1) ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Sorveteria') == 1) ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Praca') == 1) ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Ambiental') == 1) ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Escola') == 1) ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Multiplayer') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Inicio') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Mercado') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Fliperama') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Sorveteria') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Praca') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Ambiental') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Escola') != 'f') ? "checked" : ""?>/></td>
 		</tr>
 		<?php
 		}
