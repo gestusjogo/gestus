@@ -29,13 +29,12 @@ if ($db_handle) {
 		for ($row = 0; $row < pg_num_rows($result); $row++) {
 			?>
 		<tr>
-		<?=pg_result($result, $row, 'Multiplayer')?>
 			<td><?=pg_result($result, $row, 'Nome')?></td>
 			<td><?=pg_result($result, $row, 'Idade')?></td>
 			<td><?=pg_result($result, $row, 'Data')?></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Multiplayer') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Inicio') != 'f') ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Mercado') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Supermercado') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Fliperama') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Sorveteria') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Praca') != 'f') ? "checked" : ""?>/></td>
