@@ -37,7 +37,7 @@ if ($db_handle) {
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Supermercado') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Fliperama') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Sorveteria') != 'f') ? "checked" : ""?>/></td>
-			<td><input type="checkbox" <?=(pg_result($result, $row, 'Praca') != 'f') ? "checked" : ""?>/></td>
+			<td><input type="checkbox" <?=(pg_result($result, $row, 'Praça') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Ambiental') != 'f') ? "checked" : ""?>/></td>
 			<td><input type="checkbox" <?=(pg_result($result, $row, 'Escola') != 'f') ? "checked" : ""?>/></td>
 		</tr>
