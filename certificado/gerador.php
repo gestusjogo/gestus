@@ -10,9 +10,9 @@ require('PHPMailer/class.phpmailer.php');
 // $nome     = utf8_decode($_POST['nome']);
 // $cpf      = $_POST['cpf'];
 $email    = 'jonathanmonteirodev@gmail.com';
-$nome     =  $_GET['nome'];
+$nome     =  'teste';
 $cpf      = '05109064350';
-$idade = $_GET['idade'];
+$idade = 12;
 
 // --------- Variáveis que podem vir de um banco de dados por exemplo ----- //
 $pessoa  = "";
