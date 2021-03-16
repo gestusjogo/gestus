@@ -798,7 +798,18 @@ function armazenar_dados_multi(nome, idade, nome2, idade2){
 
 function pular_feedback(){
 	$("#modal_feedback").hide();
-	$("#modal_reiniciar_jogo").show();
+	$.ajax({
+		url: "certificado/gerador.php?nome=jonathan&idade=19",
+		type: "GET",
+		cache: false,
+		success: function (data) {
+			console.log(data);
+		},
+		error: function (err, exception) {
+			console.log(err.responseText);
+		}
+	});
+	//$("#modal_reiniciar_jogo").show();
 }
 
 function deixar_feedback(){
