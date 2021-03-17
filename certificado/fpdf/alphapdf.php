@@ -66,4 +66,5 @@ class AlphaPDF extends FPDF
         parent::_putresources();
     }
 }
+$pdf = new AlphaPDF();
 ?>
