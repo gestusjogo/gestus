@@ -1,6 +1,4 @@
 <?php
-require('fpdf/alphapdf.php');
-require('PHPMailer/class.phpmailer.php');
 
 
 // --------- Variáveis do Formulário ----- //
@@ -26,5 +24,5 @@ $texto3 = '';
 
 
 echo $nome;
-echo i$dade;
+echo $idade;
 ?>
