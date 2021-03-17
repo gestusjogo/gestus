@@ -1,5 +1,6 @@
 <?php
 require('fpdf/alphapdf.php');
+require('PHPMailer/class.phpmailer.php');
 
 
 // --------- Variáveis do Formulário ----- //
