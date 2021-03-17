@@ -1,4 +1,5 @@
 <?php
+require('fpdf/alphapdf.php');
 
 
 // --------- Variáveis do Formulário ----- //
