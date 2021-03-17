@@ -32,7 +32,6 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 	<title>GESTUS</title>
 </head>
 <body>
-<iframe src="certificado/gerador.php?nome=jonathan&idade=12" style="border: 0; width: 100%; height: 100%; margin: 0"></iframe>
 	<div id="myCanvas" class="bg_inicio">
 		<button class="som somativo somaqui"></button>
 		<div id="fim_jogo" style="background-image: url('assets/images/fim.png'); height: 100%; ">
@@ -49,6 +48,11 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 						<input type="button" id="close_voltar_cidade" class="btn_alertas btn_alertas_nao" value=" Não ">	
 						<input type="button" class="voltar_cidade btn_alertas btn_alertas_sim" value=" Sim ">
 					</div>
+				</div>
+			</div>
+			<div id="modal_certificado" class="modal" style="display: block">
+				<div class="modal-content">
+					<iframe src="certificado/gerador.php?nome=jonathan&idade=12" style="border: 0; width: 100%; height: 100%; margin: 0"></iframe>
 				</div>
 			</div>
 			<div id="modal_votacao" class="modal">
