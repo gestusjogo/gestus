@@ -25,7 +25,6 @@ $texto2 = utf8_decode("Certificamos que ".$nome.", de ".$idade." anos,\n complet
 $texto3 = '';
 
 
-$pdf = new AlphaPDF();
 echo $nome;
-echo idade;
+echo i$dade;
 ?>
