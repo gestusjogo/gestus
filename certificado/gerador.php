@@ -6,13 +6,9 @@ require('PHPMailer/class.phpmailer.php');
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 // --------- Variáveis do Formulário ----- //
-// $email    = $_POST['email'];
-// $nome     = utf8_decode($_POST['nome']);
+$idade    = $_POST['idade'];
+$nome     = utf8_decode($_POST['nome']);
 // $cpf      = $_POST['cpf'];
-$email    = 'jonathanmonteirodev@gmail.com';
-$nome     =  'teste';
-$cpf      = '05109064350';
-$idade = 12;
 
 // --------- Variáveis que podem vir de um banco de dados por exemplo ----- //
 $pessoa  = "";
@@ -83,7 +79,7 @@ $mail->AddAddress($email);
 $mail->addStringAttachment($pdfdoc, 'certificado.pdf');
 $mail->Send();*/
 
-$certificado="arquivos/$cpf.pdf"; //atribui a variável $certificado com o caminho e o nome do arquivo que será salvo (vai usar o CPF digitado pelo usuário como nome de arquivo)
+//$certificado="arquivos/$cpf.pdf"; //atribui a variável $certificado com o caminho e o nome do arquivo que será salvo (vai usar o CPF digitado pelo usuário como nome de arquivo)
 $pdf->Output($certificado,'F'); //Salva o certificado no servidor (verifique se a pasta "arquivos" tem a permissão necessária)
 // Utilizando esse script provavelmente o certificado ficara salvo em www.seusite.com.br/gerar_certificado/arquivos/999.999.999-99.pdf (o 999 representa o CPF digitado pelo usuário)
 

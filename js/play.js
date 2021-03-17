@@ -798,9 +798,14 @@ function armazenar_dados_multi(nome, idade, nome2, idade2){
 
 function pular_feedback(){
 	$("#modal_feedback").hide();
+	var dados = {
+		"nome" : "Kp",
+		"idade" : 12
+	}
 	$.ajax({
-		url: "certificado/gerador.php?nome=jonathan&idade=19",
-		type: "GET",
+		url: "certificado/gerador.php",
+		type: "POST",
+		data: dados,
 		cache: false,
 		success: function (data) {
 			console.log(data);
