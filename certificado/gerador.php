@@ -6,8 +6,8 @@ require('PHPMailer/class.phpmailer.php');
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 // --------- Variáveis do Formulário ----- //
-$idade    = $_POST['idade'];
-$nome     = utf8_decode($_POST['nome']);
+$idade    = $_GET['idade'];
+$nome     = utf8_decode($_GET['nome']);
 // $cpf      = $_POST['cpf'];
 
 // --------- Variáveis que podem vir de um banco de dados por exemplo ----- //
