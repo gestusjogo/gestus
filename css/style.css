@@ -253,7 +253,7 @@ body{
   width: 70%;
   height: 230px;
 }
-#modal_certificado{
+.modal-content{
   height: 500px;
 }
 
