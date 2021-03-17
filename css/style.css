@@ -253,6 +253,9 @@ body{
   width: 70%;
   height: 230px;
 }
+#modal_certificado{
+  height: 500px;
+}
 
 .text-modal{
   font-size: 35px;
