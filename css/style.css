@@ -254,6 +254,7 @@ body{
   height: 230px;
 }
 #modal_certificado > .modal-content{
+  margin-top: 0px;
   height: 500px;
 }
 
