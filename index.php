@@ -53,7 +53,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 			<div id="modal_certificado" class="modal" style="display: none">
 				<div class="modal-content">
 					<p class="text-center text-modal">Seu certificado</p>
-					<iframe src="certificado/gerador.php?nome=jonathan&idade=12" style="border: 0; width: 100%; height: 400px; margin: 0"></iframe>
+					<!--<iframe src="certificado/gerador.php?nome=jonathan&idade=12" style="border: 0; width: 100%; height: 400px; margin: 0"></iframe>-->
 				</div>
 			</div>
 			<div id="modal_votacao" class="modal">
