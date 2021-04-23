@@ -95,12 +95,12 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 			</div>
 			
 			<div id="modal_reiniciar_jogo" class="modal">
-				<div class="modal-content">
+				<div class="modal-content" style="height:300px">
 					<p class="text-center text-modal"  style="margin: 16px;">Obrigado por jogar!</p>
 					<div class="btns_confirmacao">
 						<input type="button" id="reiniciar_jogo" style="margin-top: -30px;margin-bottom: 20px;" class="btn_alertas btn_alertas_sim" value="Reiniciar jogo">
 						<input type="button" id="voltar_para_cidade" class="btn_alertas btn_alertas_sim" value="Voltar para cidade">	
-						<input type="button" id="ver_certificado" class="btn_alertas btn_alertas_sim" value=" Ver seu certificado ">
+						<input type="button" id="ver_certificado" style="margin-top: 25px;" class="btn_alertas btn_alertas_sim" value=" Ver seu certificado ">
 					</div>
 				</div>
 			</div>
