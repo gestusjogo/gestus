@@ -2,6 +2,15 @@ $("#voltar_para_cidade").click(function(){
 	trocarTela('#tela_cidade','bg_menu');
 	$("#modal_reiniciar_jogo").hide();
 });
+$("#ver_certificado").click(function(){
+	var nome_certificado = nome;
+	var idade_certificado = idade;
+	if(multi_jogadores){
+		nome_certificado += 'e '+nome2;
+		idade_certificado += 'e '+idade2;
+	}
+	window.open("/certificado/gerador.php?nome="+nome_certificado+'&idade='+idade_certificado+'&multiplayer='+multi_jogadores);
+});
 $("#reiniciar_jogo").click(function(){
 	trocarTela('#menu','bg_inicio');
 	voltar_menu();
