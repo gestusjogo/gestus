@@ -50,7 +50,7 @@ date_default_timezone_set( 'America/Sao_Paulo' );
 					</div>
 				</div>
 			</div>
-			<div id="modal_certificado" class="modal" style="display: block">
+			<div id="modal_certificado" class="modal" style="display: none">
 				<div class="modal-content">
 					<p class="text-center text-modal">Seu certificado</p>
 					<input type="button" class="voltar_cidade btn_alertas btn_alertas_sim" value=" Clique aqui para ver seu certificado ">
