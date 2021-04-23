@@ -8,7 +8,7 @@ ini_set("display_errors", 1);
 // --------- Variáveis do Formulário ----- //
 $idade    = $_GET['idade'];
 $nome     = utf8_decode($_GET['nome']);
-$multi     = utf8_decode($_GET['multiplayer']);
+$multi     = $_GET['multiplayer'];
 // $cpf      = $_POST['cpf'];
 
 // --------- Variáveis que podem vir de um banco de dados por exemplo ----- //
