@@ -20,8 +20,7 @@ $carga_h  = "8 horas";
 
 
 $texto1 = '';
-echo $_GET['multiplayer'];
-if($_GET['multiplayer'] == true){
+if($_GET['multiplayer'] == 'true'){
     $texto2 = utf8_decode("Certificamos que ".$nome.", de ".$idade." anos,\n completaram com sucesso o jogo Gestus,\n ferramenta voltada para apresentar LIBRAS\n a crianças ouvintes no dia ".$data.".");
 }else{
     $texto2 = utf8_decode("Certificamos que ".$nome.", de ".$idade." anos,\n completou com sucesso o jogo Gestus,\n ferramenta voltada para apresentar LIBRAS\n a crianças ouvintes no dia ".$data.".");
