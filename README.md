@@ -1,27 +1,8 @@
 # Gestus
-<div 
-    style="
-        display:flex;
-        background:#90ddf0;
-        padding: 8px 8px 0 8px;
-        color:#0E1116;
-        flex-wrap:wrap;
-        justify-content:center
-    "
->
-    <img 
-        src="assets/images/jonas.png" width="50%"
-        style="
-            margin-bottom:8px
-            min-width:30px;
-        ">
-    <p
-        style="
-        color:#0E1116;
-        flex-wrap:wrap;
-        justify-content:center;
-        font-size: 16px;
-    ">
+
+<div style="display:flex;background:#90ddf0;padding: 8px 8px 0 8px;color:#0E1116;flex-wrap:wrap;justify-content:center;">
+<img src="assets/images/jonas.png" width="50%" style="margin-bottom:8px;min-width:30px;">
+    <p style="color:#0E1116;flex-wrap:wrap;justify-content:center;font-size: 16px;">
         Olá, Dev! Fico muito feliz por você contribuir para este jogo! Abaixo estão algumas instruções para você não ficar perdido! Boa sorte!
     </p>
 </div>
