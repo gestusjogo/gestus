@@ -1,0 +1,14 @@
+version: "3.4"
+services: 
+    srvnode:
+        container_name: srvnode
+        build: ./
+        networks: 
+            - host
+        ports:
+            - 80:80
+        volumes:
+            - ./:/front-end
+networks:
+    host:
+        driver: bridge
