@@ -1,0 +1,165 @@
+#escola{
+  border-style: none;
+  position: absolute;
+  top: 140px;
+  left: 700px; 
+  background-color: transparent;
+  padding: 65px 100px;
+  -ms-transform: rotate(30deg); /* IE 9 */
+  -webkit-transform: rotate(30deg); /* Safari 3-8 */
+  transform: rotate(30deg);
+  cursor:  url(../assets/images/hover.png), auto;
+  z-index: 5;
+}
+
+#supermercado{
+  border-style: none;
+  position: absolute;
+  top: 30px;
+  left: 520px;
+  background-color: transparent;
+  padding: 50px 80px;
+  -ms-transform: rotate(-30deg); /* IE 9 */
+  -webkit-transform: rotate(-30deg); /* Safari 3-8 */
+  transform: rotate(-30deg);
+  cursor:  url(../assets/images/hover.png), auto;
+  z-index: 5;
+}
+
+#sorveteria{
+  border-style: none;
+  position: absolute;
+  top: 390px;
+  left: 370px;
+  background-color: transparent;
+  padding: 60px 80px;
+  -ms-transform: rotate(32deg); /* IE 9 */
+  -webkit-transform: rotate(32deg); /* Safari 3-8 */
+  transform: rotate(32deg);
+  cursor:  url(../assets/images/hover.png), auto;
+  z-index: 5;
+}
+
+#fliperama{
+  border-style: none;
+  position: absolute;
+  top: 295px;
+  left: 665px; 
+  background-color: transparent;
+  padding: 40px 70px;
+  -ms-transform: rotate(35deg); /* IE 9 */
+  -webkit-transform: rotate(35deg); /* Safari 3-8 */
+  transform: rotate(35deg);
+  cursor:  url(../assets/images/hover.png), auto;
+  z-index: 5;
+}
+
+#casa{
+  border-style: none;
+  position: absolute;
+  top: 260px;
+  left: 180px; 
+  background-color: transparent;
+  padding: 60px 70px;
+  -ms-transform: rotate(35deg); /* IE 9 */
+  -webkit-transform: rotate(35deg); /* Safari 3-8 */
+  transform: rotate(35deg);
+  cursor:  url(../assets/images/hover.png), auto;
+  z-index: 5;
+}
+
+#praca{
+  border-style: none;
+  position: absolute;
+  top: 215px;
+  left: 585px; 
+  background-color: transparent;
+  padding: 45px 40px;
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari 3-8 */
+  transform: rotate(45deg);
+  cursor:  url(../assets/images/hover.png), auto;
+  z-index: 5;
+}
+
+#parque{
+  border-style: none;
+  position: absolute;
+  top: 305px;
+  left: 305px; 
+  background-color: transparent;
+  padding: 40px 180px;
+  -ms-transform: rotate(33deg); /* IE 9 */
+  -webkit-transform: rotate(33deg); /* Safari 3-8 */
+  transform: rotate(33deg);
+  cursor:  url(../assets/images/hover.png), auto;
+  z-index: 5;
+}
+
+#pin_escola{
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 780px; 
+}
+
+
+#pin_supermercado{
+  display: none;
+  position: absolute;
+  top: -20px;
+  left: 570px;
+}
+
+
+#pin_fliperama{
+  display: none;
+  position: absolute;
+  top: 240px;
+  left: 700px; 
+}
+
+
+#pin_praca{
+  display: none;
+  position: absolute;
+  top: 165px;
+  left: 590px;
+}
+
+#pin_sorveteria{
+  display: none;
+  position: absolute;
+  top: 330px;
+  left: 430px; 
+}
+
+#pin_parque{
+  display: none;
+  position: absolute;
+  top: 250px;
+  left: 440px; 
+}
+
+#pin_casa{
+  display: none;
+  position: absolute;
+  top: 200px;
+  left: 220px; 
+}
+
+.circulo_azul{
+  margin-left: 150px;
+  border-radius: 50%;
+  background-color: #5A9AF9;
+  width: 200px;
+  height: 200px;
+}
+
+.circulo_rosa{
+  margin-left: 150px;
+  border-radius: 50%;
+  background-color: #ffb2db;
+  width: 200px;
+  height: 200px;
+}

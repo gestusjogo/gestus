@@ -1,0 +1,75 @@
+@font-face { 
+  font-family: Amatic; 
+  src: url('../assets/fonts/Amatic-Bold.ttf'); 
+}
+
+.next_super{
+    position: absolute;
+    top: 250px;
+    left: 936px;
+    cursor:  url(../assets/images/hover.png), auto;
+}
+
+.back_super{
+    position: absolute;
+    top: 250px;
+    left: 0px;
+    cursor:  url(../assets/images/hover.png), auto;
+}
+
+.lista_supermercado {
+    font-family: 'Amatic', sans-serif;
+    font-size: 30px;
+	position: absolute;
+	left: 40px;
+	top: 350px;
+}
+
+.item_lista{
+	border: none;
+    cursor: url(../assets/images/cursor.png), auto;
+}
+
+#item1{
+	background-color: transparent;
+	position: absolute;
+    top: 215px;
+    left: 280px;
+    padding: 20px 80px;
+}
+
+#item2{
+	background-color: transparent;
+	position: absolute;
+    top: 175px;
+    left: 710px;
+    padding: 40px 120px;
+}
+
+#item3{
+	background-color: transparent;
+	position: absolute;
+    top: 230px;
+    left: 30px;
+    padding: 20px 75px;
+}
+
+#item4{
+	background-color: transparent;
+	position: absolute;
+    top: 440px;
+    left: 785px;
+    padding: 40px 80px;
+}
+
+#item5{
+	background-color: transparent;
+	position: absolute;
+    top: 497px;
+    left: 280px;
+    padding: 10px 87px;
+}
+
+#fim_super{
+    z-index: 9999;
+}
