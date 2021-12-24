@@ -1,471 +1,132 @@
-
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<script src="/js/jquery.min.js"></script>
-	<!-- ARQUIVOS JS -->
-	<script type='text/javascript' src='/js/multi_jogadores.js'></script>
-	<script type='text/javascript' src='/js/som.js'></script>
-	<script type="text/javascript" src="/js/play.js"></script>
-	<script type="text/javascript" src="/js/menu.js"></script>
-	<script type="text/javascript" src="/js/textos.js"></script>
-	<script type='text/javascript' src='/js/jogo_das_cores.js'></script>
-	<script type='text/javascript' src='/js/animation.js'></script>
-	<script type='text/javascript' src='/js/falas.js'></script>
-	<script type='text/javascript' src='/js/escala_likert.js'></script>
-	<!-- ARQUIVOS CSS -->
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/css/style2.css">
-	<link rel="stylesheet" type="text/css" href="/css/bg.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_inicio.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_dialogo.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_jogomemoria.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_supermercado.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_jogoerros.css">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<script type="text/javascript" src="./js/swal.min.js"></script>
-	<title>GESTUS</title>
-</head>
-<body>
-	<div id="myCanvas" class="bg_inicio">
-		<button class="som somativo somaqui"></button>
-		<div id="fim_jogo" style="background-image: url('assets/images/fim.png'); height: 100%; ">
-			<center><input type="button" style="margin-top: 350px;" class="voltar_cidade btn_alertas btn_alertas_sim" value=" Voltar para a cidade "></center>
-		</div>
-		<audio id="myAudio" autoplay>
-			<source src="./assets/musica.mp3" type="audio/mpeg">
-			</audio>
-			<!-- Modal voltar inicio -->
-			<div id="modal_voltar_cidade" class="modal">
-				<div class="modal-content">
-					<p class="text-center text-modal">Você tem certeza que deseja parar de jogar?</p>
-					<div class="btns_confirmacao">
-						<input type="button" id="close_voltar_cidade" class="btn_alertas btn_alertas_nao" value=" Não ">	
-						<input type="button" class="voltar_cidade btn_alertas btn_alertas_sim" value=" Sim ">
-					</div>
-				</div>
-			</div>
-			<div id="modal_votacao" class="modal">
-				<div class="modal-content">
-					<p class="text-center text-modal">O que você achou dessa fase?</p>
-					<div class="btns_escala">
-						<div onclick="enviar_escala(1)"><img src="assets/images/pin.png"></div>
-						<div onclick="enviar_escala(2)"><img src="assets/images/pin.png"></div>
-						<div onclick="enviar_escala(3)"><img src="assets/images/pin.png"></div>
-						<div onclick="enviar_escala(4)"><img src="assets/images/pin.png"></div>
-						<div onclick="enviar_escala(5)"><img src="assets/images/pin.png"></div>
-					</div>
-				</div>
-			</div>
-			<button id="butt_pular" onclick="pular_falas()">PULAR</button>
-			<!-- Modal repetir animação -->
-			<div id="modal_voltar_menu" class="modal">
-				<div class="modal-content">
-					<p class="text-center text-modal">Você tem certeza que deseja voltar ao menu?</p>
-					<div class="btns_confirmacao">
-						<input type="button" id="fechar_modal_menu" class="btn_alertas btn_alertas_nao" value=" Não ">	
-						<input type="button" id="voltar_menu" class="btn_alertas btn_alertas_sim" value=" Sim ">
-					</div>
-				</div>
-			</div>
-			
-			<div id="modal_modo_jogo" class="modal">
-				<div class="modal-content">
-					<p class="text-center text-modal">Escolham o modo de jogo:</p>
-					<div class="btns_confirmacao">
-						<input type="button" id="juntos" class="btn_alertas btn_alertas_nao" value="Juntos ">	
-						<input type="button" id="versus" class="btn_alertas btn_alertas_sim" value="Versus">
-					</div>
-				</div>
-			</div>
-			<div id="modal_feedback" class="modal">
-				<div class="modal-content" style="height: 300px;">
-					<p class="text-center text-modal" style="margin: 16px;">O que achou do jogo?</p>
-					<textarea class="feedback_textarea" maxlength="1000"></textarea>						
-					<div class="btns_confirmacao" style="margin-top: 10px;">
-						<input type="button" id="feedback" style="font-size: 31px;" onclick="deixar_feedback()" class="btn_alertas btn_alertas_sim" value="Enviar">
-						<input type="button" id="pular_feedback" onclick="pular_feedback()" style="font-size: 31px;" class="btn_alertas btn_alertas_sim" value="Pular" style="margin-top: 20px;">
-					</div>
-				</div>
-			</div>
-			
-			<div id="modal_reiniciar_jogo" class="modal">
-				<div class="modal-content" style="height:300px">
-					<p class="text-center text-modal"  style="margin: 16px;">Obrigado por jogar!</p>
-					<div class="btns_confirmacao">
-						<input type="button" id="reiniciar_jogo" style="margin-top: -30px;margin-bottom: 20px;" class="btn_alertas btn_alertas_sim" value="Reiniciar jogo">
-						<input type="button" id="voltar_para_cidade" class="btn_alertas btn_alertas_sim" value="Voltar para cidade">	
-						<input type="button" id="ver_certificado" style="margin-top: 25px;" class="btn_alertas btn_alertas_sim" value=" Ver seu certificado ">
-					</div>
-				</div>
-			</div>
-			<div class="pontuacao">
-				<div class="jogador1 jogador_atual" style="position: absolute;top: 20%; font-family: AristaPro-Fat; src: url('../assets/fonts/AristaPro-Fat.otf'); border: solid transparent;padding: 10px;  font-size: 2.2vw"><p>Jogador 1</p><p style="margin: auto; text-align: center;">0</p></div>
-				<div class="jogador2" style="position: absolute;top: 20%; font-family: AristaPro-Fat; src: url('../assets/fonts/AristaPro-Fat.otf'); border: solid transparent;padding: 10px;  font-size: 2.2vw"><p>Jogador 2</p><p style="margin: auto; text-align: center;">0</p></div>
-			</div>
-			<!-- Botão voltar cidade -->
-			<button class="butt_voltar" id="butt_voltar_cidade" style="display: none"> VOLTAR </button>
+        <title>Laravel</title>
 
-			<div id="dialogo" style="display: none">
-				<div class="dialogo_pers">JONAS</div>
-				<div class="caixa_dialogo" onclick="falas();">
-					<p id="fala"></p>
-				</div>
-				<img class="jonas_cutscene" src="assets/images/jonas.png">
-				<div class="caixa_seta bounce" onclick="falas();"> 
-					<img class="arrow" src="assets/images/arrow.png">
-				</div>
-			</div>
-			<img class="jonas_cutscene_center" src="assets/images/jonas.png" style="display: none">
-			<img class="marina_cutscene" src="assets/images/marina.png" style="display: none">
-			<div id="animacao">
-				<canvas id="animation"></canvas>
-			</div>
-			<!-- Tela menu -->
-			<div id="menu">
-				<button class="button_menu play_game" onclick="trocarTela('#tela_escolher_player','bg_fundo')"></button> 
-				<button class="button_menu som somMenu somativo somaqui"></button>
-				<button class="button_menu ajuda" onclick="return trocarTela('#tela_ajuda','bg_ajuda')"></button>
-				<button class="button_menu infor" onclick="return trocarTela('#tela_infor','bg_infor')"></button>
-				<!--<button class="button_menu infor" onclick="window.location.href='certificado/gerador.php?nome=Jonathan%20e%20Maria&idade=18%20e%2020';"></button>-->
-			</div>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-			<div class="tela" id="tela_escolher_player">
-				<button class="butt_voltar" onclick="return trocarTela('#menu','bg_inicio')"> VOLTAR </button>
-				<button class="btn_jogadores btn_j1" onclick=" multi_jogadores = false;return trocarTela('#tela1','bg_fundo')"> 1 jogador </button>
-				<button class="btn_jogadores btn_j2" onclick=" multi_jogadores = true;return trocarTela('#tela_j1','bg_fundo')"> 2 jogadores </button>
-			</div>
+        <!-- Styles -->
+        <style>
+            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
+        </style>
 
-			<div class="tela" id="tela_ajuda">
-				<button class="butt_voltar" onclick="return trocarTela('#menu','bg_inicio')"> VOLTAR </button>
+        <style>
+            body {
+                font-family: 'Nunito', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="antialiased">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-			</div>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
 
-			<div class="tela" id="tela_infor">
-				<button class="butt_voltar" onclick="return trocarTela('#menu','bg_inicio')"> VOLTAR </button>
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+                    <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
+                        <g clip-path="url(#clip0)" fill="#EF3B2D">
+                            <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
+                        </g>
+                    </svg>
+                </div>
 
-			</div>
+                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-6">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
+                            </div>
 
-			<div class="tela" id="tela1">
-				<button class="butt_voltar" onclick="return trocarTela('#tela_escolher_player','bg_fundo')"> VOLTAR </button>
-				<form name="formulario" id="formulario_inicio">
-					<div class="circulo_azul">
-						<img id="pacote" src="assets/images/jogador.png">
-					</div>
-					<input type="text" autocomplete="off" name="nome" id="nome" placeholder="Nome" onkeypress="return isLetterKey(event)" onkeyup="animaLetra()">
-					<input type="text" autocomplete="off" name="idade" id="idade" placeholder="Idade" min="1" max="3" onkeypress="return isNumberKey(event)" onkeyup="animaNumero()">
-					<input type="button" value="Jogar" id="play" class="btn_jogadores play" onclick="if(validacoes()){ getDados(this);return trocarTela('#tela_casa','bg_casa')}">
-				</form>
-			</div>
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                </div>
+                            </div>
+                        </div>
 
-			<div class="tela" id="tela_j1">
-				<button class="butt_voltar" onclick="return trocarTela('#tela_escolher_player','bg_fundo')"> VOLTAR </button>
+                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
+                            </div>
 
-				<form name="formulario" id="formulario_inicio">
-					<div class="circulo_rosa">
-						<img id="pacote_j1" src="assets/images/jogador.png">
-					</div>
-					<input type="text" autocomplete="off" name="nome" id="nome_j1" placeholder="Nome" onkeypress="return isLetterKey(event)" onkeyup="animaLetra_j1()">
-					<input type="text" autocomplete="off" name="idade" id="idade_j1" placeholder="Idade" min="1" onkeypress="return isNumberKey(event)" onkeyup="animaNumero_j1()">
-					<input type="button" value="Próximo" class="btn_jogadores proximo" onclick="if(validacoes(1)){ return trocarTela('#tela_j2','bg_j2')}">
-				</form>
-			</div>
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+                                </div>
+                            </div>
+                        </div>
 
-			<div class="tela" id="tela_j2">
-				<button class="butt_voltar" onclick="return trocarTela('#tela_j1','bg_j1')"> VOLTAR </button>
+                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
+                            </div>
 
-				<form name="formulario" id="formulario_inicio">
-					<div class="circulo_azul">
-						<img id="pacote_j2" src="assets/images/jogador.png">
-					</div>
-					<input type="text" autocomplete="off" name="nome" id="nome_j2" placeholder="Nome" onkeypress="return isLetterKey(event)" onkeyup="animaLetra_j2()">
-					<input type="text" autocomplete="off" name="idade" id="idade_j2" placeholder="Idade" min="1" onkeypress="return isNumberKey(event)" onkeyup="animaNumero_j2()">
-					<input type="button" value="Jogar" id="play" class="btn_jogadores play" onclick="if(validacoes(2)){getDadosMulti();return trocarTela('#tela_casa','bg_casa')}">
-				</form>
-			</div>
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
+                                </div>
+                            </div>
+                        </div>
 
-			<!-- tela inicio -->
-			<div class="tela" id="tela_casa">
-				<div id="saudacoes" style="display: none">
-					<div id="ini_oi" onclick="if(fim_animacao){saudacao_executada('oi'); executa_animacao('jonas','oi');}">Oi</div>
-					<div id="ini_bd" onclick="if(fim_animacao){saudacao_executada('bom_dia'); executa_animacao('jonas','bom_dia');}">Bom dia</div>
-					<div id="ini_bt" onclick="if(fim_animacao){saudacao_executada('boa_tarde'); executa_animacao('jonas','boa_tarde');}">Boa tarde</div>
-					<div id="ini_bn" onclick="if(fim_animacao){saudacao_executada('boa_noite'); executa_animacao('jonas','boa_noite');}">Boa noite</div>
-				</div>
-				<div class="bounce">	
-					<img id="seta" class="arrow2" onclick="proxima_fala();" src="assets/images/arrow.png">
-				</div>
+                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
+                            <div class="flex items-center">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
+                            </div>
 
-			</div>
+                            <div class="ml-12">
+                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-			<!-- tela cidade -->
-			<div class="tela" id="tela_cidade">
-				<button class="butt_voltar" id="volta_menu" onclick="$('#modal_voltar_menu').show();"> MENU </button>
-				<input type="button" class="pin" id="escola" onclick="return trocarTela('#tela_escola', 'bg_escola')">
-				<img id="pin_escola" src="assets/images/pin.png">
-				<input type="button" class="pin" id="supermercado" onclick="trocarTela('#tela_supermercado', 'bg_supermercado1')">
-				<img id="pin_supermercado" src="assets/images/pin.png">
-				<input type="button" class="pin" id="sorveteria" onclick="return trocarTela('#tela_sorveteria', 'bg_sorveteria')">
-				<img id="pin_sorveteria" src="assets/images/pin.png">
-				<input type="button" class="pin" id="fliperama" onclick="return trocarTela('#tela_fliperama', 'bg_fliperama')">
-				<img id="pin_fliperama" src="assets/images/pin.png">
-				<input type="button" class="pin" id="casa" onclick="return trocarTela('#tela_casa','bg_casa')">
-				<img id="pin_casa" src="assets/images/pin.png">
-				<input type="button" class="pin" id="praca" style="display: none" onclick="return trocarTela('#tela_praca','bg_praca')">
-				<img id="pin_praca" src="assets/images/pin.png">
-				<!--<input type="button" class="pin" id="parque" onclick="return trocarTela('#tela_parque','bg_parque')">
-				<img id="pin_parque" src="assets/images/pin.png">-->
-			</div>
+                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                    <div class="text-center text-sm text-gray-500 sm:text-left">
+                        <div class="flex items-center">
+                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
+                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
 
-			<!-- tela escola -->
-			<div class="tela" id="tela_escola">
-				<div id="game">
-					<div class="card" id="card0">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card1">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card2">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card3">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card4">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card5">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card6">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card7">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card8">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<div class="card" id="card9">
-						<div class="face back"></div>
-						<div class="face front"></div>
-					</div>
-					<img id="match" src="assets/images/jogo_memoria/match.png" />
+                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
+                                Shop
+                            </a>
 
-					<div id="gameOver">
-						<img id="imgGameOver" src="assets/images/jogo_memoria/gameover.png" />
-					</div>
-				</div>
-			</div>		
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
+                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
 
-			<!-- tela supermercado -->
-			<div class="tela" id="tela_supermercado">
-				<!-- BOTÕES PRODUTOS -->			
-				<input type="button" id="item1" class="item_lista" onclick="executa_animacao('jonas','maça');item_encontrado('.p1')">
-				<input type="button" id="item2" class="item_lista" name="ovo" onclick="executa_animacao('jonas','ovo');item_encontrado('.p2')">
-				<input type="button" id="item3" class="item_lista" name="agua" onclick="executa_animacao('jonas','agua');item_encontrado('.p3')">
-				<input type="button" id="item4" class="item_lista" name="chocolate" onclick="executa_animacao('jonas','chocolate');item_encontrado('.p4')">
-				<input type="button" id="item5" class="item_lista" name="queijo" onclick="executa_animacao('jonas','queijo');item_encontrado('.p5')">
+                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
+                                Sponsor
+                            </a>
+                        </div>
+                    </div>
 
-
-				<!-- LISTA DE COMPRAS -->
-				<div class="lista_supermercado">
-					<ol>
-						<li class="p1">Maçã</li>
-						<li class="p2">Ovo</li>
-						<li class="p3">Água</li>
-						<li class="p4">Chocolate</li>
-						<li class="p5">Queijo</li>
-					</ol>
-				</div>
-				<img id="fim_super" src="assets/images/fim.png" />
-			</div>
-
-			<!-- tela sorveteria -->
-			<div class="tela" id="tela_sorveteria">
-				<div id="exibir_numero" class="modal-erros">
-					<input type="button" id="close_numero">	
-					<div class="modal-erros-content">
-						<img id="imagem_erro" src="">
-						<p class="text-center text-modal-erros" id="numero_erro"></p>
-					</div>
-				</div>
-				<input type="button" id="erro0" class="erros" onclick="erro_aqui('#x0')">
-				<input type="button" id="erro1" class="erros" onclick="erro_aqui('#x1')">
-				<input type="button" id="erro2" class="erros" onclick="erro_aqui('#x2')">
-				<input type="button" id="erro3" class="erros" onclick="erro_aqui('#x3')">
-				<input type="button" id="erro4" class="erros" onclick="erro_aqui('#x4')">
-				<input type="button" id="erro5" class="erros" onclick="erro_aqui('#x5')">
-				<input type="button" id="erro6" class="erros" onclick="erro_aqui('#x6')">
-				<input type="button" id="erro7" class="erros" onclick="erro_aqui('#x7')">
-				<input type="button" id="erro8" class="erros" onclick="erro_aqui('#x8')">
-				<input type="button" id="erro9" class="erros" onclick="erro_aqui('#x9')">
-				<img class="imagem_erro" id="x0" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x1" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x2" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x3" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x4" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x5" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x6" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x7" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x8" src="assets/images/cross.png" >
-				<img class="imagem_erro" id="x9" src="assets/images/cross.png" >
-			</div>
-
-			<!-- tela fliperama -->
-			<div class="tela" id="tela_fliperama">
-			</div>
-
-			<!-- tela jogo das cores -->
-			<div class="tela" id="tela_fliperama2">
-				<div id="score_cc"> 
-					<a id="score_cc_text">Pontuação: 000</a>
-				</div>
-				<div id="cores">
-					<div class="cor" id="amarelo" onclick="executa_animacao('jonas','amarelo');"></div>
-					<div class="cor" id="verde" onclick="executa_animacao('jonas','verde');"></div>
-					<div class="cor" id="azul" onclick="executa_animacao('jonas','azul');"></div>
-					<div class="cor" id="vermelho" onclick="executa_animacao('jonas','vermelho');"></div>
-				</div>
-				<canvas id="viewport" width="640" height="480"></canvas>
-				<img id="fim_fliper" src="assets/images/fim.png" />
-			</div>
-
-			<!-- tela praca -->
-			<div class="tela bg_blur" id="tela_praca">
-				<div class="formulario_nome">
-					<form name="formulario" id="form_nome_libras">
-						<input type="text" name="nome" id="nome_libras" placeholder="Nome" disabled="">
-					</form>
-					<div class="teclado_libras">
-						<button class="tecla_letra" value='a'></button>
-						<button class="tecla_letra" value='b'></button>
-						<button class="tecla_letra" value='c'></button>
-						<button class="tecla_letra" value='d'></button>
-						<button class="tecla_letra" value='e'></button>
-						<button class="tecla_letra" value='f'></button>
-						<button class="tecla_letra" value='g'></button>
-						<button class="tecla_letra" value='h'></button>
-						<button class="tecla_letra" value='i'></button>
-						<button class="tecla_letra" value='j'></button>
-						<button class="tecla_letra" value='k'></button>
-						<button class="tecla_letra" value='l'></button>
-						<button class="tecla_letra" value='m'></button>
-						<button class="tecla_letra" value='n'></button>
-						<button class="tecla_letra" value='o'></button>
-						<button class="tecla_letra" value='p'></button>
-						<button class="tecla_letra" value='q'></button>
-						<button class="tecla_letra" value='r'></button>
-						<button class="tecla_letra" value='s'></button>
-						<button class="tecla_letra" value='t'></button>
-						<button class="tecla_letra" value='u'></button>
-						<button class="tecla_letra" value='v'></button>
-						<button class="tecla_letra" value='w'></button>
-						<button class="tecla_letra" value='x'></button>
-						<button class="tecla_letra" value='y'></button>
-						<button class="tecla_letra" value='z'></button>
-						<button class="tecla_letra" value='ç'></button>
-						<button class="tecla_espaco">Espaço</button>
-						<button class="tecla_apagar" onclick="teclado_libras_apagar('nome')">Apagar</button>
-					</div>
-					<img class="tecla_enviar" onclick="teclado_libras_enviar('nome')" src="assets/images/arrow line.png">
-				</div>
-				<div class="formulario_idade">
-					<form name="formulario" id="form_idade_libras">
-						<input type="text" name="nome" id="idade_libras" placeholder="Idade" disabled="">
-					</form>
-					<div class="teclado_libras_numero">
-						<button class="tecla_numero" value='0'></button>
-						<button class="tecla_numero" value='1'></button>
-						<button class="tecla_numero" value='2'></button>
-						<button class="tecla_numero" value='3'></button>
-						<button class="tecla_numero" value='4'></button>
-						<button class="tecla_numero" value='5'></button>
-						<button class="tecla_numero" value='6'></button>
-						<button class="tecla_numero" value='7'></button>
-						<button class="tecla_numero" value='8'></button>
-						<button class="tecla_numero" value='9'></button>
-						<button class="tecla_apagar tecla_apagar_idade" onclick="teclado_libras_apagar('idade')">Apagar</button>
-					</div>
-					<img class="tecla_enviar" onclick="teclado_libras_enviar('idade')" src="assets/images/arrow line.png">
-				</div>
-			</div>
-			<div class="tela" id="tela_parque">
-				<div id="libras_ambiental" style="position: initial; display: none">
-					<div id="libras_lixeiras">
-						<div id="libras_lixeira_verde" class="lixeira lixo_verde"  onclick="executa_animacao('jonas','vidro');ambiental_executada('vidro');"></div>
-						<div id="libras_lixeira_vermelho" class="lixeira lixo_vermelho" onclick="executa_animacao('jonas','plastico');ambiental_executada('plastico');"></div>
-						<div id="libras_lixeira_amarelo" class="lixeira lixo_amarelo" onclick="executa_animacao('jonas','metal');ambiental_executada('metal');"></div>
-						<div id="libras_lixeira_azul" class="lixeira lixo_azul" onclick="executa_animacao('jonas','papel');ambiental_executada('papel');"></div>
-					</div>
-					<div class="bounce">	
-						<img id="seta2" class="arrow2" onclick="mostrar_animacoes = true; proxima_fala();" src="assets/images/arrow.png">
-					</div>
-				</div>
-				<div id="jogo_ambiental" style="position: initial; display: none">
-						<div id="lixo">
-							<div id="lixo_imagem"></div>
-							<div id="lixo_inicio"></div>
-							<div id="lixo_fim"></div>
-						</div>
-					<div id="lixeiras">
-						<div id="lixeira_verde" class="lixeira lixo_verde"></div>
-						<div id="lixeira_vermelho" class="lixeira lixo_vermelho"></div>
-						<div id="lixeira_amarelo" class="lixeira lixo_amarelo"></div>
-						<div id="lixeira_azul" class="lixeira lixo_azul"></div>
-					</div>
-				</div>
-				<div id="jogo_ambiental_multiplayer" style="position: initial; display: none">
-					<div class="parte_jogador1">
-						<div class="lixo" id="lixo1">
-							<div id="lixo_imagem1"></div>
-							<div id="lixo_inicio"></div>
-							<div id="lixo_fim"></div>
-						</div>
-						<div id="lixeiras_multiplayer">
-							<div id="lixeira_verde" class="lixeira_multiplayer lixo_verde"></div>
-							<div id="lixeira_vermelho" class="lixeira_multiplayer lixo_vermelho"></div>
-							<div id="lixeira_amarelo" class="lixeira_multiplayer lixo_amarelo"></div>
-							<div id="lixeira_azul" class="lixeira_multiplayer lixo_azul"></div>
-						</div>
-					</div>
-					<div id="divisor" style="width: 4px; height: 562px; position: absolute; left: 498px;background-color: black;"></div>
-					<div class="parte_jogador2">
-						<div class="lixo" id="lixo2">
-							<div id="lixo_imagem2"></div>
-							<div id="lixo_inicio"></div>
-							<div id="lixo_fim"></div>
-						</div>
-						<div id="lixeiras_multiplayer">
-							<div id="lixeira_verde" class="lixeira_multiplayer lixo_verde"></div>
-							<div id="lixeira_vermelho" class="lixeira_multiplayer lixo_vermelho"></div>
-							<div id="lixeira_amarelo" class="lixeira_multiplayer lixo_amarelo"></div>
-							<div id="lixeira_azul" class="lixeira_multiplayer lixo_azul"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<iframe id="envio" style="display: none;"></iframe>
-		</div>
-		<!-- ARQUIVOS JS -->
-		<script type="text/javascript" src="/js/textos.js"></script>
-		<script type="text/javascript" src="/js/jogo_supermercado.js"></script>
-		<script type="text/javascript" src="/js/jogo_memoria.js"></script>
-		<script type="text/javascript" src="/js/jogo_erros.js"></script>
-		<script type="text/javascript" src="/js/modal.js"></script>
-		<script type="text/javascript" src="/js/praca.js"></script>
-		<script type="text/javascript" src="/js/ambiental.js"></script>
-		<script type="text/javascript" src="/js/ambiental_multiplayer_versus.js"></script>
-	</body>
-	</html>
+                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
