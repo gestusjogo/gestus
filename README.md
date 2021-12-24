@@ -3,35 +3,34 @@
 [Assine a Academy, e Seja VIP!](https://academy.especializati.com.br)
 
 ### Passo a passo
-Clone Repositório
+
+### Passo 1: Clone o repositório
 ```sh
-git clone https://github.com/especializati/setup-docker-laravel.git my-project
-cd my-project/
+git clone https://github.com/gestusjogo/gestus.git
+
 ```
 
-
-Alterne para a branch laravel 8.x
+### Passo 2: Alterne para a branch laravel-8
 ```sh
 git checkout laravel-8
 ```
 
-
-Remova o versionamento
+### Passo 3: Entre na pasta core
 ```sh
-rm -rf .git/
+cd core/
 ```
 
 
-Crie o Arquivo .env
+### Passo 4: Crie o Arquivo .env
 ```sh
-cd example-project/
 cp .env.example .env
 ```
 
 
-Atualize as variáveis de ambiente do arquivo .env
+### Passo 5: Atualize as variáveis de ambiente do arquivo .env
+
 ```dosini
-APP_NAME=EspecializaTi
+APP_NAME=Gestus
 APP_URL=http://localhost:8180
 
 DB_CONNECTION=mysql
@@ -51,29 +50,28 @@ REDIS_PORT=6379
 ```
 
 
-Suba os containers do projeto
+### Passo 6: Suba os containers do projeto
 ```sh
 docker-compose up -d
 ```
 
-
-Acessar o container
+### Passo 7: Acessar o container
 ```sh
 docker-compose exec laravel_8 bash
 ```
 
 
-Instalar as dependências do projeto
+### Passo 8: Instalar as dependências do projeto
 ```sh
 composer install
 ```
 
 
-Gerar a key do projeto Laravel
+### Passo 9: Gerar a key do projeto Laravel
 ```sh
 php artisan key:generate
 ```
 
 
-Acesse o projeto
+### Passo 10: Acesse o projeto
 [http://localhost:8180](http://localhost:8180)
