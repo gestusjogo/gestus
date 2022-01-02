@@ -546,6 +546,28 @@ function voltar_menu(){
 	document.getElementById("pacote_j2").src = "assets/images/jogador.png";
 }
 
+
+function validate(nameId, ageId){
+	
+	const nameField = document.getElementById(nameId)
+	const ageField = document.getElementById(ageId) 
+	console.log("nameField: ",nameField.value.length);
+	console.log("ageField: ",ageField.value.length);
+	if(nameField.value.length <= 0 && ageField.value.length <= 0){
+		swal("Ops, você esqueceu de colocar seu nome e sua idade.","Para continuar, por favor preencha os campos");
+		return false;	
+	}
+	if(nameField.value.length <= 0){
+		swal("Ops, você esqueceu de colocar seu nome","Para continuar, por favor digite seu nome");
+		return false;	
+	}
+	if(ageField.value.length <= 0){
+		swal("Ops, você esqueceu de colocar sua idade.","Para continuar, por favor digite sua idade");
+		return false;	
+	}
+	return true;
+}
+
 function validacoes(jogador){
 	if(multi_jogadores){
 		if(jogador == "1"){

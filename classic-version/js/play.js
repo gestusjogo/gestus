@@ -546,6 +546,21 @@ function voltar_menu(){
 	document.getElementById("pacote_j2").src = "assets/images/jogador.png";
 }
 
+function validateSinglePlayer(){
+	alert("SinglePlayer")
+}
+function validateMultiPlayer(){
+	alert("MultiPlayer")
+}
+function validate(){
+	
+	if (multi_jogadores) {
+		validateMultiPlayer()
+	}else{
+		validateSinglePlayer()
+	}
+}
+
 function validacoes(jogador){
 	if(multi_jogadores){
 		if(jogador == "1"){

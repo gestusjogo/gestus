@@ -2,6 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<script src="/test-redux/immer.umd.production.min.js"></script>
+  	<script src="/test-redux/redux.min.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<!-- ARQUIVOS JS -->
 	<script type='text/javascript' src='/js/multi_jogadores.js'></script>
@@ -27,13 +29,36 @@
 	<title>GESTUS</title>
 </head>
 <body>
+<script type="module">
+    import store from '/test-redux/store/configureStore.js';
+    // import { incrementarTempo, reduzirTempo, modificarEmail } from '/test-redux/store/aluno.js';
+    // import { completarAula, completarCurso, resetarCurso } from '/test-redux/store/aulas.js';
+	import { setName, incrementScores, setAge} from '/test-redux/store/section.js';
+	
+
+    function render() {
+      const { section, levels } = store.getState();
+    //   const aulasEl = document.getElementById('aulas');
+    //   const alunoEl = document.getElementById('aluno');
+		console.log("Section: ",section);
+		console.log("name: ",section.name);
+		console.log("levels: ",levels);
+    //   alunoEl.innerText = `${aluno.nome} : ${aluno.email} : ${aluno.diasRestantes}`;
+    //   aulasEl.innerText = aulas.filter((aula) => aula.completa === true).length;
+    }
+    render();
+    store.subscribe(render);
+	store.dispatch(setName("Mateus"))
+	store.dispatch(setAge(12))
+    
+  </script>
 	<div id="myCanvas" class="bg_inicio">
 		<button class="som somativo somaqui"></button>
 		<div id="fim_jogo" style="background-image: url('assets/images/fim.png'); height: 100%; ">
 			<center><input type="button" style="margin-top: 350px;" class="voltar_cidade btn_alertas btn_alertas_sim" value=" Voltar para a cidade "></center>
 		</div>
 		<audio id="myAudio" autoplay>
-			<source src="./assets/musica.mp3" type="audio/mpeg">
+			<!-- <source src="./assets/musica.mp3" type="audio/mpeg"> -->
 			</audio>
 			<!-- Modal voltar inicio -->
 			<div id="modal_voltar_cidade" class="modal">
@@ -154,7 +179,7 @@
 					</div>
 					<input type="text" autocomplete="off" name="nome" id="nome" placeholder="Nome" onkeypress="return isLetterKey(event)" onkeyup="animaLetra()">
 					<input type="text" autocomplete="off" name="idade" id="idade" placeholder="Idade" min="1" max="3" onkeypress="return isNumberKey(event)" onkeyup="animaNumero()">
-					<input type="button" value="Jogar" id="play" class="btn_jogadores play" onclick="if(validacoes()){ getDados(this);return trocarTela('#tela_casa','bg_casa')}">
+					<input type="button" value="Jogar" id="play" class="btn_jogadores play" onclick="if(validate('nome','idade')){ getDados(this);return trocarTela('#tela_casa','bg_casa')}">
 				</form>
 			</div>
 
@@ -167,7 +192,7 @@
 					</div>
 					<input type="text" autocomplete="off" name="nome" id="nome_j1" placeholder="Nome" onkeypress="return isLetterKey(event)" onkeyup="animaLetra_j1()">
 					<input type="text" autocomplete="off" name="idade" id="idade_j1" placeholder="Idade" min="1" onkeypress="return isNumberKey(event)" onkeyup="animaNumero_j1()">
-					<input type="button" value="Próximo" class="btn_jogadores proximo" onclick="if(validacoes(1)){ return trocarTela('#tela_j2','bg_j2')}">
+					<input type="button" value="Próximo" class="btn_jogadores proximo" onclick="if(validate('nome_j1','idade_j1')){ return trocarTela('#tela_j2','bg_j2')}">
 				</form>
 			</div>
 
@@ -180,7 +205,7 @@
 					</div>
 					<input type="text" autocomplete="off" name="nome" id="nome_j2" placeholder="Nome" onkeypress="return isLetterKey(event)" onkeyup="animaLetra_j2()">
 					<input type="text" autocomplete="off" name="idade" id="idade_j2" placeholder="Idade" min="1" onkeypress="return isNumberKey(event)" onkeyup="animaNumero_j2()">
-					<input type="button" value="Jogar" id="play" class="btn_jogadores play" onclick="if(validacoes(2)){getDadosMulti();return trocarTela('#tela_casa','bg_casa')}">
+					<input type="button" value="Jogar" id="play" class="btn_jogadores play" onclick="if(validate('nome_j2','idade_j2')){getDadosMulti();return trocarTela('#tela_casa','bg_casa')}">
 				</form>
 			</div>
 
