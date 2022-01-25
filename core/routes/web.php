@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('/game')->group(function(){
+    Route::get('/', function () {
+        return view('game.index');
+    });
 });

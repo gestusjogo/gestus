@@ -1,46 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<script src="js/jquery.min.js"></script>
-	<!-- ARQUIVOS JS -->
-	<script type='text/javascript' src='/js/multi_jogadores.js'></script>
-	<script type='text/javascript' src='/js/som.js'></script>
-	<script type="text/javascript" src="/js/play.js"></script>
-	<script type="text/javascript" src="/js/menu.js"></script>
-	<script type="text/javascript" src="/js/textos.js"></script>
-	<script type='text/javascript' src='/js/jogo_das_cores.js'></script>
-	<script type='text/javascript' src='/js/animation.js'></script>
-	<script type='text/javascript' src='/js/falas.js'></script>
-	<script type='text/javascript' src='/js/escala_likert.js'></script>
-	<!-- ARQUIVOS CSS -->
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/css/style2.css">
-	<link rel="stylesheet" type="text/css" href="/css/bg.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_inicio.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_dialogo.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_jogomemoria.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_supermercado.css">
-	<link rel="stylesheet" type="text/css" href="/css/style_jogoerros.css">
-
-	<script type="text/javascript" src="./js/swal.min.js"></script>
-	<title>GESTUS</title>
-</head>
-<body>
-	<div id="myCanvas" class="bg_inicio">
+@extends('game.layouts.index')
+@section('game')
 		<button class="som somativo somaqui"></button>
 		<div id="fim_jogo" style="background-image: url('assets/images/fim.png'); height: 100%; ">
 			<center><input type="button" style="margin-top: 350px;" class="voltar_cidade btn_alertas btn_alertas_sim" value=" Voltar para a cidade "></center>
 		</div>
 		<audio id="myAudio" autoplay>
 			<source src="./assets/musica.mp3" type="audio/mpeg">
-			</audio>
+		</audio>
 			<!-- Modal voltar inicio -->
 			<div id="modal_voltar_cidade" class="modal">
 				<div class="modal-content">
 					<p class="text-center text-modal">Você tem certeza que deseja parar de jogar?</p>
 					<div class="btns_confirmacao">
-						<input type="button" id="close_voltar_cidade" class="btn_alertas btn_alertas_nao" value=" Não ">	
+						<input type="button" id="close_voltar_cidade" class="btn_alertas btn_alertas_nao" value=" Não ">
 						<input type="button" class="voltar_cidade btn_alertas btn_alertas_sim" value=" Sim ">
 					</div>
 				</div>
@@ -63,17 +35,17 @@
 				<div class="modal-content">
 					<p class="text-center text-modal">Você tem certeza que deseja voltar ao menu?</p>
 					<div class="btns_confirmacao">
-						<input type="button" id="fechar_modal_menu" class="btn_alertas btn_alertas_nao" value=" Não ">	
+						<input type="button" id="fechar_modal_menu" class="btn_alertas btn_alertas_nao" value=" Não ">
 						<input type="button" id="voltar_menu" class="btn_alertas btn_alertas_sim" value=" Sim ">
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="modal_modo_jogo" class="modal">
 				<div class="modal-content">
 					<p class="text-center text-modal">Escolham o modo de jogo:</p>
 					<div class="btns_confirmacao">
-						<input type="button" id="juntos" class="btn_alertas btn_alertas_nao" value="Juntos ">	
+						<input type="button" id="juntos" class="btn_alertas btn_alertas_nao" value="Juntos ">
 						<input type="button" id="versus" class="btn_alertas btn_alertas_sim" value="Versus">
 					</div>
 				</div>
@@ -81,20 +53,20 @@
 			<div id="modal_feedback" class="modal">
 				<div class="modal-content" style="height: 300px;">
 					<p class="text-center text-modal" style="margin: 16px;">O que achou do jogo?</p>
-					<textarea class="feedback_textarea" maxlength="1000"></textarea>						
+					<textarea class="feedback_textarea" maxlength="1000"></textarea>
 					<div class="btns_confirmacao" style="margin-top: 10px;">
 						<input type="button" id="feedback" style="font-size: 31px;" onclick="deixar_feedback()" class="btn_alertas btn_alertas_sim" value="Enviar">
 						<input type="button" id="pular_feedback" onclick="pular_feedback()" style="font-size: 31px;" class="btn_alertas btn_alertas_sim" value="Pular" style="margin-top: 20px;">
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="modal_reiniciar_jogo" class="modal">
 				<div class="modal-content" style="height:300px">
 					<p class="text-center text-modal"  style="margin: 16px;">Obrigado por jogar!</p>
 					<div class="btns_confirmacao">
 						<input type="button" id="reiniciar_jogo" style="margin-top: -30px;margin-bottom: 20px;" class="btn_alertas btn_alertas_sim" value="Reiniciar jogo">
-						<input type="button" id="voltar_para_cidade" class="btn_alertas btn_alertas_sim" value="Voltar para cidade">	
+						<input type="button" id="voltar_para_cidade" class="btn_alertas btn_alertas_sim" value="Voltar para cidade">
 						<input type="button" id="ver_certificado" style="margin-top: 25px;" class="btn_alertas btn_alertas_sim" value=" Ver seu certificado ">
 					</div>
 				</div>
@@ -112,7 +84,7 @@
 					<p id="fala"></p>
 				</div>
 				<img class="jonas_cutscene" src="assets/images/jonas.png">
-				<div class="caixa_seta bounce" onclick="falas();"> 
+				<div class="caixa_seta bounce" onclick="falas();">
 					<img class="arrow" src="assets/images/arrow.png">
 				</div>
 			</div>
@@ -121,29 +93,16 @@
 			<div id="animacao">
 				<canvas id="animation"></canvas>
 			</div>
-			<!-- Tela menu -->
-			<div id="menu">
-				<button class="button_menu play_game" onclick="trocarTela('#tela_escolher_player','bg_fundo')"></button> 
-				<button class="button_menu som somMenu somativo somaqui"></button>
-				<button class="button_menu ajuda" onclick="return trocarTela('#tela_ajuda','bg_ajuda')"></button>
-				<button class="button_menu infor" onclick="return trocarTela('#tela_infor','bg_infor')"></button>
-				<!--<button class="button_menu infor" onclick="window.location.href='certificado/gerador.php?nome=Jonathan%20e%20Maria&idade=18%20e%2020';"></button>-->
-			</div>
 
-			<div class="tela" id="tela_escolher_player">
-				<button class="butt_voltar" onclick="return trocarTela('#menu','bg_inicio')"> VOLTAR </button>
-				<button class="btn_jogadores btn_j1" onclick=" multi_jogadores = false;return trocarTela('#tela1','bg_fundo')"> 1 jogador </button>
-				<button class="btn_jogadores btn_j2" onclick=" multi_jogadores = true;return trocarTela('#tela_j1','bg_fundo')"> 2 jogadores </button>
-			</div>
+			@include('game.partials.menu')
 
-			<div class="tela" id="tela_ajuda">
-				<button class="butt_voltar" onclick="return trocarTela('#menu','bg_inicio')"> VOLTAR </button>
+			@include('game.partials.telas.escolher_player')
 
-			</div>
+			@include('game.partials.telas.ajuda')
+			
 
 			<div class="tela" id="tela_infor">
 				<button class="butt_voltar" onclick="return trocarTela('#menu','bg_inicio')"> VOLTAR </button>
-
 			</div>
 
 			<div class="tela" id="tela1">
@@ -192,7 +151,7 @@
 					<div id="ini_bt" onclick="if(fim_animacao){saudacao_executada('boa_tarde'); executa_animacao('jonas','boa_tarde');}">Boa tarde</div>
 					<div id="ini_bn" onclick="if(fim_animacao){saudacao_executada('boa_noite'); executa_animacao('jonas','boa_noite');}">Boa noite</div>
 				</div>
-				<div class="bounce">	
+				<div class="bounce">
 					<img id="seta" class="arrow2" onclick="proxima_fala();" src="assets/images/arrow.png">
 				</div>
 
@@ -266,11 +225,11 @@
 						<img id="imgGameOver" src="assets/images/jogo_memoria/gameover.png" />
 					</div>
 				</div>
-			</div>		
+			</div>
 
 			<!-- tela supermercado -->
 			<div class="tela" id="tela_supermercado">
-				<!-- BOTÕES PRODUTOS -->			
+				<!-- BOTÕES PRODUTOS -->
 				<input type="button" id="item1" class="item_lista" onclick="executa_animacao('jonas','maça');item_encontrado('.p1')">
 				<input type="button" id="item2" class="item_lista" name="ovo" onclick="executa_animacao('jonas','ovo');item_encontrado('.p2')">
 				<input type="button" id="item3" class="item_lista" name="agua" onclick="executa_animacao('jonas','agua');item_encontrado('.p3')">
@@ -294,7 +253,7 @@
 			<!-- tela sorveteria -->
 			<div class="tela" id="tela_sorveteria">
 				<div id="exibir_numero" class="modal-erros">
-					<input type="button" id="close_numero">	
+					<input type="button" id="close_numero">
 					<div class="modal-erros-content">
 						<img id="imagem_erro" src="">
 						<p class="text-center text-modal-erros" id="numero_erro"></p>
@@ -328,7 +287,7 @@
 
 			<!-- tela jogo das cores -->
 			<div class="tela" id="tela_fliperama2">
-				<div id="score_cc"> 
+				<div id="score_cc">
 					<a id="score_cc_text">Pontuação: 000</a>
 				</div>
 				<div id="cores">
@@ -408,7 +367,7 @@
 						<div id="libras_lixeira_amarelo" class="lixeira lixo_amarelo" onclick="executa_animacao('jonas','metal');ambiental_executada('metal');"></div>
 						<div id="libras_lixeira_azul" class="lixeira lixo_azul" onclick="executa_animacao('jonas','papel');ambiental_executada('papel');"></div>
 					</div>
-					<div class="bounce">	
+					<div class="bounce">
 						<img id="seta2" class="arrow2" onclick="mostrar_animacoes = true; proxima_fala();" src="assets/images/arrow.png">
 					</div>
 				</div>
@@ -457,14 +416,4 @@
 			</div>
 			<iframe id="envio" style="display: none;"></iframe>
 		</div>
-		<!-- ARQUIVOS JS -->
-		<script type="text/javascript" src="/js/textos.js"></script>
-		<script type="text/javascript" src="/js/jogo_supermercado.js"></script>
-		<script type="text/javascript" src="/js/jogo_memoria.js"></script>
-		<script type="text/javascript" src="/js/jogo_erros.js"></script>
-		<script type="text/javascript" src="/js/modal.js"></script>
-		<script type="text/javascript" src="/js/praca.js"></script>
-		<script type="text/javascript" src="/js/ambiental.js"></script>
-		<script type="text/javascript" src="/js/ambiental_multiplayer_versus.js"></script>
-	</body>
-	</html>
+@endsection()
